@@ -176,6 +176,7 @@ ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that 
   where gender = 'M' GROUP BY gender' at line 1
 mysql> select min(salary) from employee_payroll
     ->  where gender = 'M' GROUP BY gender;
+    
 +-------------+
 | min(salary) |
 +-------------+
@@ -238,5 +239,70 @@ mysql> describe employee_payroll;
 | net_pay     | double(15,3) | YES  |     | NULL    |       |
 +-------------+--------------+------+-----+---------+-------+
 13 rows in set (0.00 sec)
+
+mysql>
+-----------------------------------UC10---------------------------------------------------------
+
+mysql> update employee_payroll SET phone_number = 9866109193, address = 'hyderabad',department = 'HR',basic_pay=40000,deductions=1000,taxable_pay=31000,income_tax=4000,net_pay=31000 where employee_id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee_payroll SET phone_number = 9493149258, address ='vijayawada',department = 'testing',basic_pay=52000,deductions=1500,taxable_pay=45000,income_tax=5000,net_pay=45000 where employee_id = 2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee_payroll SET phone_number = 8886968998, address ='guntur',department = 'developer',basic_pay=60000,deductions=2500,taxable_pay=53000,income_tax=5500,net_pay=53000 where employee_id = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++-------------+---------+----------+------------+--------+--------------+------------+------------+-----------+------------+-------------+------------+-----------+
+| employee_id | name    | salary   | start_date | gender | phone_number | address    | department | basic_pay | deductions | taxable_pay | income_tax | net_pay   |
++-------------+---------+----------+------------+--------+--------------+------------+------------+-----------+------------+-------------+------------+-----------+
+|           1 | krishna | 35000.00 | 2019-04-15 | M      |   9866109193 | hyderabad  | HR         | 40000.000 |    1000.00 |   31000.000 |    4000.00 | 31000.000 |
+|           2 | raj     | 48000.00 | 2020-12-09 | M      |   9493149258 | vijayawada | testing    | 52000.000 |    1500.00 |   45000.000 |    5000.00 | 45000.000 |
+|           3 | abhijit | 56000.00 | 2022-04-25 | F      |   8886968998 | guntur     | developer  | 60000.000 |    2500.00 |   53000.000 |    5500.00 | 53000.000 |
++-------------+---------+----------+------------+--------+--------------+------------+------------+-----------+------------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee_payroll values (4,'terissa',38000,2021-05-16,'F',8897361232,'patna','web_developer',43000,1300,34000,4500,34000);
+ERROR 1292 (22007): Incorrect date value: '2000' for column 'start_date' at row 1
+mysql> ^C
+mysql> insert into employee_payroll values (4,'terissa',38000,'2021-05-16','F',8897361232,'patna','web_developer',43000,1300,34000,4500,34000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee_payroll values (5,'terissa',80000,'2018-05-16','F',9652030278,'ernakulam','manager',73000,3500,74000,6000,74000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee_payroll;
++-------------+---------+----------+------------+--------+--------------+------------+---------------+-----------+------------+-------------+------------+-----------+
+| employee_id | name    | salary   | start_date | gender | phone_number | address    | department    | basic_pay | deductions | taxable_pay | income_tax | net_pay   |
++-------------+---------+----------+------------+--------+--------------+------------+---------------+-----------+------------+-------------+------------+-----------+
+|           1 | krishna | 35000.00 | 2019-04-15 | M      |   9866109193 | hyderabad  | HR            | 40000.000 |    1000.00 |   31000.000 |    4000.00 | 31000.000 |
+|           2 | raj     | 48000.00 | 2020-12-09 | M      |   9493149258 | vijayawada | testing       | 52000.000 |    1500.00 |   45000.000 |    5000.00 | 45000.000 |
+|           3 | abhijit | 56000.00 | 2022-04-25 | F      |   8886968998 | guntur     | developer     | 60000.000 |    2500.00 |   53000.000 |    5500.00 | 53000.000 |
+|           4 | terissa | 38000.00 | 2021-05-16 | F      |   8897361232 | patna      | web_developer | 43000.000 |    1300.00 |   34000.000 |    4500.00 | 34000.000 |
+|           5 | terissa | 80000.00 | 2018-05-16 | F      |   9652030278 | ernakulam  | manager       | 73000.000 |    3500.00 |   74000.000 |    6000.00 | 74000.000 |
++-------------+---------+----------+------------+--------+--------------+------------+---------------+-----------+------------+-------------+------------+-----------+
+5 rows in set (0.00 sec)
+mysql> update employee_payroll set department = 'sales' where employee_id = 4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set department = 'marketing' where employee_id = 5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++-------------+---------+----------+------------+--------+--------------+------------+------------+-----------+------------+-------------+------------+-----------+
+| employee_id | name    | salary   | start_date | gender | phone_number | address    | department | basic_pay | deductions | taxable_pay | income_tax | net_pay   |
++-------------+---------+----------+------------+--------+--------------+------------+------------+-----------+------------+-------------+------------+-----------+
+|           1 | krishna | 35000.00 | 2019-04-15 | M      |   9866109193 | hyderabad  | HR         | 40000.000 |    1000.00 |   31000.000 |    4000.00 | 31000.000 |
+|           2 | raj     | 48000.00 | 2020-12-09 | M      |   9493149258 | vijayawada | testing    | 52000.000 |    1500.00 |   45000.000 |    5000.00 | 45000.000 |
+|           3 | abhijit | 56000.00 | 2022-04-25 | F      |   8886968998 | guntur     | developer  | 60000.000 |    2500.00 |   53000.000 |    5500.00 | 53000.000 |
+|           4 | terissa | 38000.00 | 2021-05-16 | F      |   8897361232 | patna      | sales      | 43000.000 |    1300.00 |   34000.000 |    4500.00 | 34000.000 |
+|           5 | terissa | 80000.00 | 2018-05-16 | F      |   9652030278 | ernakulam  | marketing  | 73000.000 |    3500.00 |   74000.000 |    6000.00 | 74000.000 |
++-------------+---------+----------+------------+--------+--------------+------------+------------+-----------+------------+-------------+------------+-----------+
+5 rows in set (0.00 sec)
 
 mysql>
