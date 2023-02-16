@@ -132,3 +132,64 @@ mysql> select * from employee_payroll;
 3 rows in set (0.00 sec)
 
 mysql>
+-----------------------------------UC7-------------------------------------------------------------
+
+mysql> SELECT SUM(salary) FROM employee_payroll
+    -> WHERE gender = 'F' GROUP BY gender;
++-------------+
+| SUM(salary) |
++-------------+
+|    56000.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT SUM(salary) FROM employee_payroll
+    ->  WHERE gender = 'M' GROUP BY gender;
++-------------+
+| SUM(salary) |
++-------------+
+|    83000.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(salary) from employee_payroll
+    -> where gender = 'F' GROUP BY gender;
++--------------+
+| AVG(salary)  |
++--------------+
+| 56000.000000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(salary) from employee_payroll
+    ->  where gender = 'M' GROUP BY gender;
++--------------+
+| AVG(salary)  |
++--------------+
+| 41500.000000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MIN(salary) from  from employee_payroll
+    ->   where gender = 'M' GROUP BY gender;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee_payroll
+  where gender = 'M' GROUP BY gender' at line 1
+mysql> select min(salary) from employee_payroll
+    ->  where gender = 'M' GROUP BY gender;
++-------------+
+| min(salary) |
++-------------+
+|    35000.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary)  from employee_payroll
+    ->  where gender = 'M' GROUP BY gender;
++-------------+
+| max(salary) |
++-------------+
+|    48000.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>
