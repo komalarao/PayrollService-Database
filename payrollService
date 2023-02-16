@@ -77,3 +77,25 @@ mysql> select * from  employee_payroll;
 3 rows in set (0.00 sec)
 
 mysql>
+-----------------------------------------UC5------------------------------------------------------
+
+mysql> select salary from employee_payroll where name='raj';
++----------+
+| salary   |
++----------+
+| 48000.00 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee_payroll
+    -> WHERE start_date BETWEEN CAST('2019-04-15' AS DATE) AND DATE(NOW());
++-------------+---------+----------+------------+
+| employee_id | name    | salary   | start_date |
++-------------+---------+----------+------------+
+|           1 | krishna | 35000.00 | 2019-04-15 |
+|           2 | raj     | 48000.00 | 2020-12-09 |
+|           3 | abhijit | 56000.00 | 2022-04-25 |
++-------------+---------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql>
