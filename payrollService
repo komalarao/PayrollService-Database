@@ -193,3 +193,23 @@ mysql> select max(salary)  from employee_payroll
 1 row in set (0.00 sec)
 
 mysql>
+------------------------------------UC8----------------------------------------------------------
+
+mysql>  alter table employee_payroll add (phone int(15), address varchar(20), department varchar(15));
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> describe employee_payroll;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| employee_id | int          | NO   | PRI | NULL    |       |
+| name        | varchar(30)  | YES  |     | NULL    |       |
+| salary      | double(10,2) | YES  |     | NULL    |       |
+| start_date  | date         | YES  |     | NULL    |       |
+| gender      | varchar(5)   | YES  |     | NULL    |       |
+| phone       | int          | YES  |     | NULL    |       |
+| address     | varchar(20)  | YES  |     | NULL    |       |
+| department  | varchar(15)  | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
